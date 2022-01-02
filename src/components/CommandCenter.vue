@@ -76,10 +76,6 @@ export default {
       { move: 'Right', command: "R" }
     ]
 
-    const updateStep = () => { 
-      isStep1.value = false
-      isStep2.value = true 
-    }
     const startMission = () => {
       emit('startMission', { 
         coordinates: coordinates, 
@@ -88,6 +84,11 @@ export default {
     }
     const sendInstructions = (move) => {
       emit('sendInstructions', move)
+    }
+    
+    const updateStep = () => { 
+      isStep1.value = false
+      isStep2.value = true 
     }
 
     return { 

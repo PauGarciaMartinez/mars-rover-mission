@@ -3,23 +3,15 @@
 </template>
 
 <script>
-import {ref, reactive} from 'vue';
+import executeCommand from '@/composables/executeCommand.js'
 
 export default {
   props: [ 'position', 'orientation', 'instruction' ],
-  setup() {
+  setup(props, { emit }) {
 
-    const moveForward = () => position.x++
-    const moveBack = () => position.x--
-    const moveRigth = () => position.y++
-    const moveLeft = () => position.y--
+    const { newPosition } = executeCommand(props.position, props.instruction)
 
-    return {
-      moveForward,
-      moveBack,
-      moveRigth,
-      moveLeft
-    }
+    return {}
   }
 }
 </script>
