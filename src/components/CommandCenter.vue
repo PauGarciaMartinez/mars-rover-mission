@@ -41,8 +41,13 @@
       <button>Start mission</button>
     </form>
   </div>
-  
 
+  <div v-if="isStep2">
+    <div v-for="instruction in instructions" :key="instruction.command">
+        <button>{{ instruction.move }}</button>
+    </div>
+  </div>
+  
 </template>
 
 <script>
@@ -59,7 +64,13 @@ export default {
     const directions = [
       { face: 'North', command: 'N' },
       { face: 'East', command: 'E' },
+      { face: 'South', command: 'S' },
       { face: 'West', command: 'W' }
+    ]
+    const instructions = [
+      { move: 'Forward', command: "F" },
+      { move: 'Left', command: "L" },
+      { move: 'Right', command: "R" }
     ]
 
     const updateStep = () => { 
@@ -78,7 +89,8 @@ export default {
       isStep2,
       coordinates, 
       orientation, 
-      directions, 
+      directions,
+      instructions, 
       updateStep,
       startMission 
     }
