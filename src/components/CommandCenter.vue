@@ -44,7 +44,10 @@
 
   <div v-if="isStep2">
     <div v-for="instruction in instructions" :key="instruction.command">
-        <button>{{ instruction.move }}</button>
+        <button 
+          @click="sendInstructions(instruction.move)">
+          {{ instruction.move }}
+        </button>
     </div>
   </div>
   
@@ -54,7 +57,7 @@
 import { reactive, ref } from '@vue/reactivity'
 
 export default {
-  emits: [ 'startMission' ],
+  emits: [ 'startMission', 'sendInstructions' ],
   setup(props, { emit }) {
     const isStep1 = ref(true)
     const isStep2 = ref(false)
@@ -83,6 +86,9 @@ export default {
         orientation: orientation.value 
       })
     }
+    const sendInstructions = (move) => {
+      emit('sendInstructions', move)
+    }
 
     return { 
       isStep1,
@@ -92,7 +98,8 @@ export default {
       directions,
       instructions, 
       updateStep,
-      startMission 
+      startMission,
+      sendInstructions 
     }
   }
 }

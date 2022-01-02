@@ -1,12 +1,12 @@
 <template>
-  <div>{{ position }} - {{ orientation }}</div>
+  <div>{{ position }} - {{ orientation }} - {{ instruction }}</div>
 </template>
 
 <script>
 import {ref, reactive} from 'vue';
 
 export default {
-  props: [ 'position', 'orientation' ],
+  props: [ 'position', 'orientation', 'instruction' ],
   setup() {
 
     const moveForward = () => position.x++

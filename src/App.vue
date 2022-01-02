@@ -1,7 +1,14 @@
 <template>
-  <CommandCenter @start-mission="startMission" />
-  <MarsRover :position="position" :orientation="orientation" />
-  <MissionMap :position="position" :orientation="orientation" />
+  <CommandCenter 
+    @start-mission="startMission" 
+    @send-instructions="sendInstructions" />
+  <MarsRover 
+    :position="position" 
+    :orientation="orientation" 
+    :instruction="instruction" />
+  <MissionMap 
+    :position="position" 
+    :orientation="orientation" />
 </template>
 
 <script>
@@ -20,17 +27,21 @@ export default {
   setup() {
     const position = reactive({ x: 0, y: 0})
     const orientation = ref('')
+    const instruction = ref('')
 
     const startMission = (info) => {
       position.x = info.coordinates.x
       position.y = info.coordinates.y
       orientation.value = info.orientation
     }
+    const sendInstructions = (move) => instruction.value = move
 
     return {
       position,
       orientation,
+      instruction,
       startMission,
+      sendInstructions
     }
   }
 }
