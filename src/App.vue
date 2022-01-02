@@ -1,11 +1,17 @@
 <template>
+  <CommandCenter />
+  <MarsRover />
 </template>
 
 <script>
+import CommandCenter from '@/components/CommandCenter';
+import MarsRover from '@/components/MarsRover';
+
 export default {
   name: 'App',
   components: {
-    
+    CommandCenter,
+    MarsRover
   }
 }
 </script>
