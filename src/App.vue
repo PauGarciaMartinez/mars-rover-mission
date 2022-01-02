@@ -1,14 +1,14 @@
 <template>
   <CommandCenter @start-mission="startMission" />
   <MarsRover :position="position" :orientation="orientation" />
-  <MissionMap />
+  <MissionMap :position="position" :orientation="orientation" />
 </template>
 
 <script>
 import { ref, reactive } from 'vue';
 import CommandCenter from '@/components/CommandCenter';
 import MarsRover from '@/components/MarsRover';
-import MissionMap from '@/components/MarsRover';
+import MissionMap from '@/components/MissionMap';
 
 export default {
   name: 'App',

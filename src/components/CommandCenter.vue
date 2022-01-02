@@ -1,35 +1,45 @@
 <template>
   <div v-if="isStep1">
-    <!-- Input for initial Rover coordinates -->
-    <div>
-      <label for="x-axis">X: </label>
-      <input 
-        v-model="coordinates.x"
-        type="number" 
-        min="0"
-        max="20"
-        id="x-axis" 
-        name="x-axis" 
-        placeholder="Enter initial coordinates">
-      <label for="y-axis">Y: </label>
-      <input
-        v-model="coordinates.y" 
-        type="number" 
-        min="0"
-        max="20"
-        id="y-axis" 
-        name="y-axis" 
-        placeholder="Enter initital coordinates">
-    </div>
+    <form @submit.prevent="startMission(), updateStep()">
+      <!-- Input for initial Rover coordinates -->
+      <div>
+        <div>
+          <label for="x-axis">X: </label>
+          <input 
+            v-model="coordinates.x"
+            type="number"
+            min="1" 
+            max="20"
+            id="x-axis" 
+            name="x-axis" 
+            placeholder="Enter initial coordinates">
+        </div>
+        <div>
+          <label for="y-axis">Y: </label>
+          <input
+            v-model="coordinates.y" 
+            type="number" 
+            min="1" 
+            max="20"
+            id="y-axis" 
+            name="y-axis" 
+            placeholder="Enter initital coordinates">
+        </div>
+      </div>
 
-    <!-- Input for Rover orientation -->
-    <div v-for="direction in directions" :key="direction.command">
-      <button @click="updateOrientation(direction.command)">
-        {{ direction.face }}
-      </button>
-    </div>
+      <!-- Input for Rover orientation -->
+      <div v-for="direction in directions" :key="direction.command">
+        <label :for="direction.command">{{ direction.face }}</label>
+        <input 
+          v-model="orientation" 
+          type="radio"
+          name="orientation"
+          :id="direction.face"
+          :value="direction.command">
+      </div>
 
-    <button @click="startMission(), updateStep()">Start mission</button>
+      <button>Start mission</button>
+    </form>
   </div>
   
 
@@ -52,25 +62,23 @@ export default {
       { face: 'West', command: 'W' }
     ]
 
-    const updateOrientation = (direction) => orientation.value = direction
     const updateStep = () => { 
       isStep1.value = false
       isStep2.value = true 
     }
-
     const startMission = () => {
       emit('startMission', { 
         coordinates: coordinates, 
         orientation: orientation.value 
       })
     }
+
     return { 
       isStep1,
       isStep2,
       coordinates, 
       orientation, 
       directions, 
-      updateOrientation,
       updateStep,
       startMission 
     }

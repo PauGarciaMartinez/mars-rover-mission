@@ -7,11 +7,11 @@
 </template>
 
 <script>
-import { computed, onBeforeMount } from '@vue/runtime-core';
+import { computed, onBeforeMount, onUpdated, watchEffect } from '@vue/runtime-core';
 
 export default {
   props: {
-    coordinates: {
+    position: {
       x: Number,
       y: Number
     }
