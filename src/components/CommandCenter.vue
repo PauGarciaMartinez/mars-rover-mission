@@ -18,16 +18,14 @@
       placeholder="Enter initital coordinates">
   </div>
 
-  <div>{{ coordinates.x }} - {{ coordinates.y }}</div>
-
   <!-- Input for Rover orientation -->
   <div v-for="direction in directions" :key="direction.command">
-    <button @click="updateOrientation(direction.command)">{{ direction.face }}</button>
+    <button @click="updateOrientation(direction.command)">
+      {{ direction.face }}
+    </button>
   </div>
 
-  <div>{{ orientation }}</div>
-
-  <button>Let's explore!</button>
+  <button @click="sendInformation">Start mission</button>
 
 </template>
 
@@ -35,7 +33,7 @@
 import { reactive, ref } from '@vue/reactivity'
 
 export default {
-  setup() {
+  setup({ emit }) {
     const coordinates = reactive({x: 0, y: 0})
     const orientation = ref('')
 
@@ -46,12 +44,18 @@ export default {
     ]
 
     const updateOrientation = (direction) => orientation.value = direction
-
+    const sendInformation = () => {
+      emit('initialInfo', { 
+        coordinates: coordinates, 
+        orientation: orientation.value 
+      })
+    }
     return { 
       coordinates, 
       orientation, 
       directions, 
-      updateOrientation 
+      updateOrientation,
+      sendInformation 
     }
   }
 }
