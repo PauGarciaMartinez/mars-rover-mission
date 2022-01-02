@@ -3,9 +3,10 @@
     @start-mission="startMission" 
     @send-instructions="sendInstructions" />
   <MarsRover 
-    :position="position" 
+    v-model:position="position" 
     :orientation="orientation" 
-    :instruction="instruction" />
+    :instruction="instruction"
+    :instructionsCount="instructionsCount"/>
   <MissionMap 
     :position="position" 
     :orientation="orientation" />
@@ -25,21 +26,26 @@ export default {
     MissionMap
   },
   setup() {
-    const position = reactive({ x: 0, y: 0})
+    const position = reactive({})
     const orientation = ref('')
     const instruction = ref('')
+    const instructionsCount = ref(0)
 
     const startMission = (info) => {
       position.x = info.coordinates.x
       position.y = info.coordinates.y
       orientation.value = info.orientation
     }
-    const sendInstructions = (move) => instruction.value = move
+    const sendInstructions = (command) => {
+      instruction.value = command
+      instructionsCount.value++
+    }
 
     return {
       position,
       orientation,
       instruction,
+      instructionsCount,
       startMission,
       sendInstructions
     }

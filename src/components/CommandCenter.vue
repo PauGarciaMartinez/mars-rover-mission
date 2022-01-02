@@ -45,7 +45,7 @@
   <div v-if="isStep2">
     <div v-for="instruction in instructions" :key="instruction.command">
         <button 
-          @click="sendInstructions(instruction.move)">
+          @click="sendInstructions(instruction.command)">
           {{ instruction.move }}
         </button>
     </div>
@@ -72,8 +72,9 @@ export default {
     ]
     const instructions = [
       { move: 'Forward', command: "F" },
-      { move: 'Left', command: "L" },
-      { move: 'Right', command: "R" }
+      { move: 'Right', command: "R" },
+      { move: 'Back', command: "B" },
+      { move: 'Left', command: "L" }
     ]
 
     const startMission = () => {
@@ -82,10 +83,10 @@ export default {
         orientation: orientation.value 
       })
     }
-    const sendInstructions = (move) => {
-      emit('sendInstructions', move)
+    const sendInstructions = (command) => {
+      emit('sendInstructions', command)
     }
-    
+
     const updateStep = () => { 
       isStep1.value = false
       isStep2.value = true 
