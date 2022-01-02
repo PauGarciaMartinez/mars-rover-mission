@@ -8,19 +8,17 @@ import executeCommand from '@/composables/executeCommand.js'
 
 export default {
   props: {
-    position: {
-      x: Number,
-      y: Number
-    },
+    position: Object,
     orientation: String,
     instruction: String,
     instructionsCount: Number
   },
-  emit: [ 'update:position' ],
+  emits: [ 'update:position' ],
   setup(props, { emit }) {
 
-    watch(() => props.instructionsCount, (a, b) => {
+    watch(() => props.instructionsCount, (value, old) => {
       // Conditional logic for obstacles goes here
+      console.log(value, props.position, props.instruction)
       const { newPosition } = executeCommand(props.position, props.instruction)
       emit('update:position', newPosition)
     })

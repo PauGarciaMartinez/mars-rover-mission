@@ -6,7 +6,7 @@
         <div>
           <label for="x-axis">X: </label>
           <input 
-            v-model="coordinates.x"
+            v-model="position.x"
             type="number"
             min="1" 
             max="20"
@@ -17,7 +17,7 @@
         <div>
           <label for="y-axis">Y: </label>
           <input
-            v-model="coordinates.y" 
+            v-model="position.y" 
             type="number" 
             min="1" 
             max="20"
@@ -54,15 +54,24 @@
 </template>
 
 <script>
-import { reactive, ref } from '@vue/reactivity'
+import { ref } from '@vue/reactivity'
 
 export default {
-  emits: [ 'startMission', 'sendInstructions' ],
+  props: {
+    position: Object,
+    orientation: String,
+    instruction: String,
+    instructionsCount: Number
+  },
+  emits: [ 
+    'update:position', 
+    'update:orientation', 
+    'update:instruction', 
+    'update:instructionsCount', 
+  ],
   setup(props, { emit }) {
     const isStep1 = ref(true)
     const isStep2 = ref(false)
-    const coordinates = reactive({x: 0, y: 0})
-    const orientation = ref('')
 
     const directions = [
       { face: 'North', command: 'N' },
@@ -78,13 +87,12 @@ export default {
     ]
 
     const startMission = () => {
-      emit('startMission', { 
-        coordinates: coordinates, 
-        orientation: orientation.value 
-      })
+      emit('update:position', props.position)
+      emit('update:orientation', props.orientation)
     }
     const sendInstructions = (command) => {
-      emit('sendInstructions', command)
+      emit('update:instruction', command)
+      emit('update:instructionsCount', props.instructionsCount += 1)
     }
 
     const updateStep = () => { 
@@ -95,13 +103,11 @@ export default {
     return { 
       isStep1,
       isStep2,
-      coordinates, 
-      orientation, 
       directions,
-      instructions, 
-      updateStep,
+      instructions,
       startMission,
-      sendInstructions 
+      sendInstructions,
+      updateStep
     }
   }
 }

@@ -7,14 +7,12 @@
 </template>
 
 <script>
-import { computed, onBeforeMount, onUpdated, watchEffect } from '@vue/runtime-core';
+import { onBeforeMount, watch } from '@vue/runtime-core';
 
 export default {
   props: {
-    position: {
-      x: Number,
-      y: Number
-    }
+    position: Object,
+    orientation: String
   },
   setup(props) {
     const squares = new Array(20).fill(0);
@@ -23,6 +21,12 @@ export default {
       for (let i = 0; i < squares.length; i++) {
         squares[i] = new Array(20).fill(0);
       }
+    })
+
+    watch(() => props.position, (curr, prev) => {
+      console.log(curr)
+      squares[prev.x][prev.y] = 0
+      squares[curr.x][curr.y] = 1
     })
 
     return {

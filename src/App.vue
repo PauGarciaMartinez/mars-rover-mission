@@ -1,12 +1,14 @@
 <template>
   <CommandCenter 
-    @start-mission="startMission" 
-    @send-instructions="sendInstructions" />
+    v-model:position="position" 
+    v-model:orientation="orientation" 
+    v-model:instruction="instruction" 
+    v-model:instructions-count="instructionsCount" />
   <MarsRover 
     v-model:position="position" 
     :orientation="orientation" 
     :instruction="instruction"
-    :instructionsCount="instructionsCount"/>
+    :instructions-count="instructionsCount"/>
   <MissionMap 
     :position="position" 
     :orientation="orientation" />
@@ -26,28 +28,17 @@ export default {
     MissionMap
   },
   setup() {
+    // Global state
     const position = reactive({})
     const orientation = ref('')
     const instruction = ref('')
     const instructionsCount = ref(0)
-
-    const startMission = (info) => {
-      position.x = info.coordinates.x
-      position.y = info.coordinates.y
-      orientation.value = info.orientation
-    }
-    const sendInstructions = (command) => {
-      instruction.value = command
-      instructionsCount.value++
-    }
 
     return {
       position,
       orientation,
       instruction,
       instructionsCount,
-      startMission,
-      sendInstructions
     }
   }
 }
