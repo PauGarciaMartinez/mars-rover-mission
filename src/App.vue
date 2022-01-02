@@ -1,17 +1,37 @@
 <template>
-  <CommandCenter />
-  <MarsRover />
+  <CommandCenter @start-mission="startMission" />
+  <MarsRover :position="position" :orientation="orientation" />
+  <MissionMap />
 </template>
 
 <script>
+import { ref, reactive } from 'vue';
 import CommandCenter from '@/components/CommandCenter';
 import MarsRover from '@/components/MarsRover';
+import MissionMap from '@/components/MarsRover';
 
 export default {
   name: 'App',
   components: {
     CommandCenter,
-    MarsRover
+    MarsRover,
+    MissionMap
+  },
+  setup() {
+    const position = reactive({ x: 0, y: 0})
+    const orientation = ref('')
+
+    const startMission = (info) => {
+      position.x = info.coordinates.x
+      position.y = info.coordinates.y
+      orientation.value = info.orientation
+    }
+
+    return {
+      position,
+      orientation,
+      startMission,
+    }
   }
 }
 </script>

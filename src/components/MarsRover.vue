@@ -1,14 +1,13 @@
 <template>
-  
+  <div>{{ position }} - {{ orientation }}</div>
 </template>
 
 <script>
 import {ref, reactive} from 'vue';
 
 export default {
+  props: [ 'position', 'orientation' ],
   setup() {
-
-    const position = reactive({x: 0, y: 0})
 
     const moveForward = () => position.x++
     const moveBack = () => position.x--
@@ -16,7 +15,6 @@ export default {
     const moveLeft = () => position.y--
 
     return {
-      position,
       moveForward,
       moveBack,
       moveRigth,
