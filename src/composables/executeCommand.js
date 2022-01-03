@@ -5,13 +5,10 @@ const executeCommand = (position, move) => {
   
   switch(move) {
     case 'F':
-      newPosition.x++;
+      newPosition.x--;
       break;
     case 'R':
       newPosition.y++;
-      break;
-    case 'B':
-      newPosition.x--;
       break;
     case 'L':
       newPosition.y--;

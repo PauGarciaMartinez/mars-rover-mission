@@ -9,7 +9,8 @@
       v-model:position="position" 
       v-model:orientation="orientation" 
       v-model:instruction="instruction" 
-      v-model:instructions-count="instructionsCount" />
+      v-model:instructions-count="instructionsCount"
+      v-model:mission-started="missionStarted" />
   </section>
   <section id="mars-rover">
     <MarsRover 
@@ -17,7 +18,7 @@
       :instruction="instruction"
       :instructions-count="instructionsCount"/>
   </section>
-  <section id="mission-map">
+  <section id="mission-map" v-if="missionStarted">
     <MissionMap 
       :position="position" 
       :orientation="orientation" />
@@ -44,11 +45,14 @@ export default {
     const instruction = ref('')
     const instructionsCount = ref(0)
 
+    const missionStarted = false
+
     return {
       position,
       orientation,
       instruction,
       instructionsCount,
+      missionStarted
     }
   }
 }
@@ -64,18 +68,21 @@ export default {
   margin-top: 60px;
 }
 header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   margin-bottom: 4rem;
 }
 .planet {
   position: absolute;
-  top: 0.8rem;
-  left: 27.2rem;
+  transform: translate(-12rem, -1.4rem);
   width: 10rem;
   height: 10rem;
-  margin: 0 auto;
   border: none;
   border-radius: 50%;
   background-color: rgb(226, 140, 90);
-  z-index: -1;
+  z-index: 1;
 }
 </style>

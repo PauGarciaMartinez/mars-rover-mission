@@ -73,13 +73,15 @@ export default {
     position: Object,
     orientation: String,
     instruction: String,
-    instructionsCount: Number
+    instructionsCount: Number,
+    missionStarted: Boolean
   },
   emits: [ 
     'update:position', 
     'update:orientation', 
     'update:instruction', 
-    'update:instructionsCount', 
+    'update:instructionsCount',
+    'update:missionStarted'
   ],
   setup(props, { emit }) {
     const isStep1 = ref(true)
@@ -92,15 +94,15 @@ export default {
       { face: 'West', command: 'W' }
     ]
     const instructions = [
+      { move: 'Left', command: "L" },
       { move: 'Forward', command: "F" },
-      { move: 'Right', command: "R" },
-      { move: 'Back', command: "B" },
-      { move: 'Left', command: "L" }
+      { move: 'Right', command: "R" }
     ]
 
     const startMission = () => {
       emit('update:position', props.position)
       emit('update:orientation', props.orientation)
+      emit('update:missionStarted', true)
     }
     const sendInstructions = (command) => {
       emit('update:instruction', command)

@@ -1,5 +1,5 @@
 <template>
-  <div>{{ position }} - {{ instruction }}</div>
+  <div>Rover: [ x: {{ position.x }} ][ y: {{ position.y }} ] - {{ instruction }}</div>
 </template>
 
 <script>
