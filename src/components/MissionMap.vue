@@ -6,8 +6,8 @@
     </div>
 
     <div class="map-container">
-      <div class="map-grid" v-for="square in squares" :key="square">
-        <div>{{ square }}</div>
+      <div class="map-grid" v-for="xAxis in matrix" :key="xAxis">
+        {{ xAxis }}
       </div>
     </div>
 
@@ -17,6 +17,7 @@
 
 <script>
 import { onBeforeMount, watch } from '@vue/runtime-core';
+import createMatrix from '@/composables/createMatrix.js'
 
 export default {
   props: {
@@ -24,22 +25,21 @@ export default {
     orientation: String
   },
   setup(props) {
-    const squares = new Array(20).fill(0);
+    const { matrix } = createMatrix(20, 20)
+
+    console.log(matrix)
 
     onBeforeMount(() => {
-      for (let i = 0; i < squares.length; i++) {
-        squares[i] = new Array(20).fill(0);
-      }
-      squares[props.position.x][props.position.y] = 1
+      matrix[props.position.x][props.position.y] = 1
     })
 
     watch(() => props.position, (curr, prev) => {
-      squares[prev.x][prev.y] = 0
-      squares[curr.x][curr.y] = 1
+      matrix[prev.x][prev.y] = 0
+      matrix[curr.x][curr.y] = 1
     })
 
     return {
-      squares
+      matrix
     }
   }
 }
