@@ -1,7 +1,7 @@
 <template>
   <header>
     <h1 class="title">Mars Rover Mission</h1>
-    <p class="subtitle">An epic journey on the red planet</p>
+    <p class="subtitle">An epic journey to the red planet</p>
     <div class="planet"></div>
   </header>
   <section id="command-center">

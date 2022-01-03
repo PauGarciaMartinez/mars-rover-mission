@@ -3,6 +3,7 @@
     <div v-for="square in squares" :key="square">
       <div>{{ square }}</div>
     </div>
+    <div>{{ position }}</div>
   </div>
 </template>
 

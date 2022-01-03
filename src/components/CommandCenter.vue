@@ -13,7 +13,8 @@
             max="20"
             id="x-axis" 
             name="x-axis" 
-            placeholder="0">
+            placeholder="0"
+            required>
         </div>
         <div>
           <label for="y-axis">Y: </label>
@@ -24,7 +25,8 @@
             max="20"
             id="y-axis" 
             name="y-axis" 
-            placeholder="0">
+            placeholder="0"
+            required>
         </div>
       </div>
 
@@ -37,7 +39,8 @@
             type="radio"
             name="orientation"
             :id="direction.face"
-            :value="direction.command">
+            :value="direction.command"
+            required>
         </div>
       </div>
 
@@ -143,6 +146,13 @@ export default {
   align-items: center;
   gap: 1rem;
   margin: 1rem 0;
+}
+.coordinates-container input {
+  font-size: 1rem;
+  height: 1.5rem;
+  width: 3rem;
+  border: 0.1rem solid rgb(226, 140, 90);
+  border-radius: 0.2rem;
 }
 .start-btn,
 .instruction-btn {
