@@ -5,9 +5,12 @@
       <span class="arrow-up"></span>
     </div>
 
-    <div v-for="square in squares" :key="square">
-      <div>{{ square }}</div>
+    <div class="map-container">
+      <div class="map-grid" v-for="square in squares" :key="square">
+        <div>{{ square }}</div>
+      </div>
     </div>
+
     <div>Map: [ x: {{ position.x }} ][ y: {{ position.y }} ]</div>
   </div>
 </template>
@@ -27,6 +30,7 @@ export default {
       for (let i = 0; i < squares.length; i++) {
         squares[i] = new Array(20).fill(0);
       }
+      squares[props.position.x][props.position.y] = 1
     })
 
     watch(() => props.position, (curr, prev) => {
@@ -60,5 +64,13 @@ export default {
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
   border-bottom: 15px solid rgb(226, 140, 90);
+}
+.map-container {
+  width: 50%;
+  margin: 0 auto;
+}
+.map-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
 }
 </style>

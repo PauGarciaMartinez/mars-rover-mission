@@ -77,12 +77,13 @@ header {
 }
 .planet {
   position: absolute;
-  transform: translate(-12rem, -1.4rem);
+  transform: translate(-9.5rem, -1.4rem);
   width: 10rem;
   height: 10rem;
   border: none;
   border-radius: 50%;
   background-color: rgb(226, 140, 90);
-  z-index: 1;
+  box-shadow: 0.3rem 0.3rem 0.5rem rgb(187, 152, 135);
+  z-index: -1;
 }
 </style>

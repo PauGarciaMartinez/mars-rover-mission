@@ -51,7 +51,6 @@
   <div class="step-two-wrapper" v-if="isStep2">
     <div class="instructions-container" >
       <div 
-        
         v-for="instruction in instructions" 
         :key="instruction.command">
         <button 
@@ -143,6 +142,7 @@ export default {
 .directions-container,
 .instructions-container {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -158,21 +158,23 @@ export default {
 }
 .start-btn,
 .instruction-btn {
-  font-size: 0.9rem;
+  font-size: 1rem;
   width: 10rem;
-  height: 2rem;
+  height: 2.5rem;
   margin: 1rem 0;
   background-color: rgb(226, 140, 90);
-  box-shadow: 0.1rem 0.1rem 0.1rem rgb(161, 175, 194);
+  box-shadow: 0.1rem 0.1rem 0.1rem rgb(187, 152, 135);
   border: none;
   border-radius: 0.2rem;
   transition: 0.3s;
 }
 .start-btn:hover,
 .instruction-btn:hover {
+  font-weight: 600;
   color: white;
   background-color: rgb(226, 140, 90);
   cursor: pointer;
-  transition: 0.3s;
+  transform: translateY(-0.2rem);
+  transition: 0.25s;
 }
 </style>
