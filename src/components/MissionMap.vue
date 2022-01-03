@@ -30,27 +30,18 @@ export default {
   },
   setup(props) {
     const { matrix } = createMatrix(20, 20)
+
     const map = ref(null)
-    
-    
 
-
-    onBeforeMount(() => {
-      // Generate obstacles function
-      matrix[props.position.x][props.position.y] = 1
-    })
-
-    onMounted(() => {
-      const ctx = map.getContext('2d')
-      const drawMap = () => {
+    const drawMap = () => {
         const boardSide = window.innerHeight * 0.6;
-        const squareSide = boardSide / 10;
+        const squareSide = boardSide / 20;
     
-        map.width = boardSide;
-        map.heigh = boardSide;
-        /* map.style.marginTop = (window.innerHeight * 0.1) + 'px' */
+        map.value.width = boardSide;
+        map.value.heigh = boardSide;
+        //map.value.style.marginBottom = (window.innerHeight * 0.1) + 'px'
 
-        
+        const ctx = map.value.getContext('2d')
 
         const cols = 20;
         const rows = 20;
@@ -59,7 +50,9 @@ export default {
           for (let j = 0; j < rows; j++) {
             let x = i * squareSide;
             let y = j * squareSide;
-            cellColor = '#8C1818';
+            const cellColor = 'rgb(226, 140, 90)';
+
+            if (matrix[j][i] === 1) cellColor = '#4C0D0D'
 
             /* if (map[j][i] === 'X') cellColor = '#4C0D0D';
         
@@ -68,8 +61,8 @@ export default {
             if (map[j][i] === 'C') cellColor = '#C2B1A4'; */
 
             ctx.beginPath();
-            ctx.lineWidth = "4";
-            ctx.strokeStyle = "black";
+            ctx.lineWidth = "1";
+            ctx.strokeStyle = "white";
             ctx.fillStyle = cellColor;
             ctx.fillRect(x, y, squareSide, squareSide);
             ctx.rect(x, y, squareSide, squareSide);
@@ -77,9 +70,17 @@ export default {
           }
         }
       }
+
+    // Lifecycle hooks
+    onBeforeMount(() => {
+      // Generate obstacles function
+      matrix[props.position.x][props.position.y] = 1
+    })
+    onMounted(() => {
       drawMap()
     })
 
+    // Trigger when Rover position changes
     watch(() => props.position, (curr, prev) => {
       matrix[prev.x][prev.y] = 0
       matrix[curr.x][curr.y] = 1
