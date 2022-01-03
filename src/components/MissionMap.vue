@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { onBeforeMount, onMounted, watch, ref } from '@vue/runtime-core';
+import { onBeforeMount, onMounted, watch, ref, reactive } from '@vue/runtime-core';
 import createMatrix from '@/composables/createMatrix.js'
 
 export default {
@@ -19,6 +19,7 @@ export default {
   },
   setup(props) {
     const { matrix } = createMatrix(20, 20)
+    const obstacles = reactive([])
 
     const map = ref(null)
 

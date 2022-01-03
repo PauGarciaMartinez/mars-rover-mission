@@ -1,5 +1,6 @@
 <template>
   <div>Rover: [ x: {{ position.x }} ][ y: {{ position.y }} ] - {{ instruction }}</div>
+  <div>To do: error message</div>
 </template>
 
 <script>
