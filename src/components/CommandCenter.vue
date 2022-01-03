@@ -150,7 +150,7 @@ export default {
   width: 10rem;
   height: 2rem;
   margin: 1rem 0;
-  background-color: rgb(146, 176, 214);
+  background-color: rgb(226, 140, 90);
   box-shadow: 0.1rem 0.1rem 0.1rem rgb(161, 175, 194);
   border: none;
   border-radius: 0.2rem;
@@ -159,7 +159,7 @@ export default {
 .start-btn:hover,
 .instruction-btn:hover {
   color: white;
-  background-color: rgb(43, 98, 170);
+  background-color: rgb(226, 140, 90);
   cursor: pointer;
   transition: 0.3s;
 }

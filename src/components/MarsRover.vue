@@ -17,7 +17,6 @@ export default {
 
     watch(() => props.instructionsCount, (value, old) => {
       // Conditional logic for obstacles goes here
-      console.log(value, props.position, props.instruction)
       const { newPosition } = executeCommand(props.position, props.instruction)
       emit('update:position', newPosition)
     })

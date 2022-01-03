@@ -1,5 +1,7 @@
+import { reactive } from 'vue'
+
 const executeCommand = (position, move) => {
-  const newPosition = { x: position.x, y: position.y };
+  const newPosition = reactive({ x: position.x, y: position.y });
   
   switch(move) {
     case 'F':

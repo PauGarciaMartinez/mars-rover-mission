@@ -24,7 +24,6 @@ export default {
     })
 
     watch(() => props.position, (curr, prev) => {
-      console.log(curr)
       squares[prev.x][prev.y] = 0
       squares[curr.x][curr.y] = 1
     })
