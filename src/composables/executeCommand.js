@@ -1,5 +1,3 @@
-import validateCommand from './validateCommand.js'
-
 const executeCommand = (position, command) => {
   const newPosition = { x: position.x, y: position.y };
   
@@ -14,10 +12,7 @@ const executeCommand = (position, command) => {
       newPosition.x--;
       break;
   }
-
-  const { isValid } = validateCommand(newPosition)
-
-  return { newPosition, isValid };
+  return { newPosition };
 }
 
 export default executeCommand;

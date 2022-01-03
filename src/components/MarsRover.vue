@@ -17,7 +17,8 @@ export default {
   setup(props, { emit }) {
 
     watch(() => props.instructionsCount, () => {
-      const { newPosition, isValid } = executeCommand(props.position, props.instruction)
+      const { newPosition } = executeCommand(props.position, props.instruction)
+      const { isValid } = validateCommand(newPosition)
       if (isValid) emit('update:position', newPosition)
     })
 
