@@ -4,6 +4,7 @@
 
 <script>
 import { watch } from '@vue/runtime-core'
+import validateCommand from '@/composables/validateCommand.js'
 import executeCommand from '@/composables/executeCommand.js'
 
 export default {
@@ -15,10 +16,9 @@ export default {
   emits: [ 'update:position' ],
   setup(props, { emit }) {
 
-    watch(() => props.instructionsCount, (value, old) => {
-      // Conditional logic for obstacles goes here
-      const { newPosition } = executeCommand(props.position, props.instruction)
-      emit('update:position', newPosition)
+    watch(() => props.instructionsCount, () => {
+      const { newPosition, isValid } = executeCommand(props.position, props.instruction)
+      if (isValid) emit('update:position', newPosition)
     })
 
     return {}

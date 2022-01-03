@@ -39,7 +39,6 @@ export default {
     MissionMap
   },
   setup() {
-    // Global state
     const position = reactive({})
     const orientation = ref('')
     const instruction = ref('')
