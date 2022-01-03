@@ -34,47 +34,49 @@ export default {
     const map = ref(null)
 
     const drawMap = () => {
-        const boardSide = window.innerHeight * 0.6;
-        const squareSide = boardSide / 20;
-    
-        map.value.width = boardSide;
-        map.value.heigh = boardSide;
-        //map.value.style.marginBottom = (window.innerHeight * 0.1) + 'px'
+      const boardSide = window.innerHeight * 0.6;
+      const squareSide = boardSide / 20;
+  
+      map.value.width = boardSide;
+      map.value.height = boardSide;
 
-        const ctx = map.value.getContext('2d')
+      const ctx = map.value.getContext('2d')
 
-        const cols = 20;
-        const rows = 20;
+      const cols = 20;
+      const rows = 20;
 
-        for (let i = 0; i < cols; i++) {
-          for (let j = 0; j < rows; j++) {
-            let x = i * squareSide;
-            let y = j * squareSide;
-            const cellColor = 'rgb(226, 140, 90)';
+      for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
+          let x = i * squareSide;
+          let y = j * squareSide;
+          const cellColor = 'rgb(226, 140, 90)';
 
-            if (matrix[j][i] === 1) cellColor = '#4C0D0D'
-
-            /* if (map[j][i] === 'X') cellColor = '#4C0D0D';
-        
-            if (map[j][i] === 'O') cellColor = '#7F7466';
-
-            if (map[j][i] === 'C') cellColor = '#C2B1A4'; */
-
-            ctx.beginPath();
-            ctx.lineWidth = "1";
-            ctx.strokeStyle = "white";
-            ctx.fillStyle = cellColor;
-            ctx.fillRect(x, y, squareSide, squareSide);
-            ctx.rect(x, y, squareSide, squareSide);
-            ctx.stroke();
-          }
+          if (matrix[i][j] === 1) cellColor = 'rgb(76, 13, 13)'
+          if (matrix[i][j] === 2) cellColor = 'rgb(127, 116, 102)'
+          
+          ctx.beginPath();
+          ctx.lineWidth = "1";
+          ctx.strokeStyle = "white";
+          ctx.fillStyle = cellColor;
+          ctx.fillRect(x, y, squareSide, squareSide);
+          ctx.rect(x, y, squareSide, squareSide);
+          ctx.stroke();
         }
       }
+    }
+
+    const createObstacles = (min, max) => {
+      for (let i = 0; i < 10; i++) {
+        const x = Math.floor(Math.random() * (max - min)) + min
+        const y = Math.floor(Math.random() * (max - min)) + min
+        if (matrix[x][y] !== 1) matrix[x][y] = 2
+      }
+    }
 
     // Lifecycle hooks
     onBeforeMount(() => {
-      // Generate obstacles function
       matrix[props.position.x][props.position.y] = 1
+      createObstacles(1, 19)
     })
     onMounted(() => {
       drawMap()
@@ -85,16 +87,6 @@ export default {
       matrix[prev.x][prev.y] = 0
       matrix[curr.x][curr.y] = 1
     })
-
-    /* function generateObstacles() {
-    for (let i = 0; i < 5; i++) {
-    const randomNum1 = Math.floor(Math.random() * 8) + 1;
-    const randomNum2 = Math.floor(Math.random() * 8) + 1;
-    map[randomNum1][randomNum2] = 'X';
-    }
-    }
-
-    generateObstacles(); */
 
     return {
       matrix,
