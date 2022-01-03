@@ -6,7 +6,6 @@
     v-model:instructions-count="instructionsCount" />
   <MarsRover 
     v-model:position="position" 
-    :orientation="orientation" 
     :instruction="instruction"
     :instructions-count="instructionsCount"/>
   <MissionMap 

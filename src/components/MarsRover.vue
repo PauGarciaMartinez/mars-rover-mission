@@ -1,5 +1,5 @@
 <template>
-  <div>{{ position }} - {{ orientation }} - {{ instruction }}</div>
+  <div>{{ position }} - {{ instruction }}</div>
 </template>
 
 <script>
@@ -9,7 +9,6 @@ import executeCommand from '@/composables/executeCommand.js'
 export default {
   props: {
     position: Object,
-    orientation: String,
     instruction: String,
     instructionsCount: Number
   },

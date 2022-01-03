@@ -1,8 +1,9 @@
 <template>
-  <div v-if="isStep1">
-    <form @submit.prevent="startMission(), updateStep()">
+  <div class="step-one-wrapper" v-if="isStep1">
+    <form class="form-container" @submit.prevent="startMission(), updateStep()">
+      
       <!-- Input for initial Rover coordinates -->
-      <div>
+      <div class="coordinates-container">
         <div>
           <label for="x-axis">X: </label>
           <input 
@@ -12,7 +13,7 @@
             max="20"
             id="x-axis" 
             name="x-axis" 
-            placeholder="Enter initial coordinates">
+            placeholder="0">
         </div>
         <div>
           <label for="y-axis">Y: </label>
@@ -23,31 +24,39 @@
             max="20"
             id="y-axis" 
             name="y-axis" 
-            placeholder="Enter initital coordinates">
+            placeholder="0">
         </div>
       </div>
 
       <!-- Input for Rover orientation -->
-      <div v-for="direction in directions" :key="direction.command">
-        <label :for="direction.command">{{ direction.face }}</label>
-        <input 
-          v-model="orientation" 
-          type="radio"
-          name="orientation"
-          :id="direction.face"
-          :value="direction.command">
+      <div class="directions-container" >
+        <div v-for="direction in directions" :key="direction.command">
+          <label :for="direction.command">{{ direction.face }}</label>
+          <input 
+            v-model="orientation" 
+            type="radio"
+            name="orientation"
+            :id="direction.face"
+            :value="direction.command">
+        </div>
       </div>
 
-      <button>Start mission</button>
+      <button class="start-btn">Start mission</button>
     </form>
   </div>
 
-  <div v-if="isStep2">
-    <div v-for="instruction in instructions" :key="instruction.command">
+  <div class="step-two-wrapper" v-if="isStep2">
+    <div class="instructions-container" >
+      <div 
+        
+        v-for="instruction in instructions" 
+        :key="instruction.command">
         <button 
+          class="instruction-btn"
           @click="sendInstructions(instruction.command)">
           {{ instruction.move }}
         </button>
+      </div>
     </div>
   </div>
   
@@ -113,6 +122,45 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.step-one-wrapper,
+.step-two-wrapper {
+  width: 100%;
+  margin: 0 auto;
+}
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.coordinates-container,
+.directions-container,
+.instructions-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+.start-btn,
+.instruction-btn {
+  font-size: 0.9rem;
+  width: 10rem;
+  height: 2rem;
+  margin: 1rem 0;
+  background-color: rgb(146, 176, 214);
+  box-shadow: 0.1rem 0.1rem 0.1rem rgb(161, 175, 194);
+  border: none;
+  border-radius: 0.2rem;
+  transition: 0.3s;
+}
+.start-btn:hover,
+.instruction-btn:hover {
+  color: white;
+  background-color: rgb(43, 98, 170);
+  cursor: pointer;
+  transition: 0.3s;
+}
 </style>
