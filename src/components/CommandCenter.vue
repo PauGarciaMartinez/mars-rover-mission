@@ -132,6 +132,9 @@ export default {
   width: 100%;
   margin: 0 auto;
 }
+.step-two-wrapper {
+  margin-top: -3rem;
+}
 .form-container {
   display: flex;
   flex-direction: column;
@@ -163,16 +166,21 @@ export default {
   height: 2.5rem;
   margin: 1rem 0;
   background-color: rgb(226, 140, 90);
-  box-shadow: 0.1rem 0.1rem 0.1rem rgb(187, 152, 135);
+  box-shadow: 0.1rem 0.1rem 0.1rem rgb(202, 192, 187);
   border: none;
   border-radius: 0.2rem;
   transition: 0.3s;
+}
+.instruction-btn {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: white;
+  background-color: rgb(128, 51, 16);
 }
 .start-btn:hover,
 .instruction-btn:hover {
   font-weight: 600;
   color: white;
-  background-color: rgb(226, 140, 90);
   cursor: pointer;
   transform: translateY(-0.2rem);
   transition: 0.25s;

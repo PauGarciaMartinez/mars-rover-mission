@@ -4,18 +4,7 @@
       <div class="orientation">{{ orientation }}</div>
       <span class="arrow-up"></span>
     </div>
-
-    <div class="map-container">
-      <div class="map-grid" v-for="axis in matrix" :key="axis">
-        {{ axis }}
-      </div>
-    </div>
-
-    <div>
-      <canvas ref="map" width="500" height="500"></canvas>
-    </div>
-
-    <div>Map: [ x: {{ position.x }} ][ y: {{ position.y }} ]</div>
+    <canvas ref="map" width="500" height="500"></canvas>
   </div>
 </template>
 
@@ -34,7 +23,7 @@ export default {
     const map = ref(null)
 
     const drawMap = () => {
-      const boardSide = window.innerHeight * 0.6;
+      const boardSide = window.innerHeight * 0.55;
       const squareSide = boardSide / 20;
   
       map.value.width = boardSide;
@@ -51,8 +40,8 @@ export default {
           let y = j * squareSide;
           const cellColor = 'rgb(226, 140, 90)';
 
-          if (matrix[i][j] === 1) cellColor = 'rgb(76, 13, 13)'
-          if (matrix[i][j] === 2) cellColor = 'rgb(127, 116, 102)'
+          if (matrix[i][j] === 1) cellColor = 'rgb(128, 51, 16)'
+          if (matrix[i][j] === 2) cellColor = 'rgb(230, 210, 165)'
           
           ctx.beginPath();
           ctx.lineWidth = "1";
@@ -86,12 +75,10 @@ export default {
     watch(() => props.position, (curr, prev) => {
       matrix[prev.x][prev.y] = 0
       matrix[curr.x][curr.y] = 1
+      drawMap()
     })
 
-    return {
-      matrix,
-      map
-    }
+    return { matrix, map }
   }
 }
 </script>
@@ -114,7 +101,7 @@ export default {
   height: 0; 
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-bottom: 15px solid rgb(226, 140, 90);
+  border-bottom: 15px solid rgb(128, 51, 16);
 }
 .map-container {
   width: 50%;
