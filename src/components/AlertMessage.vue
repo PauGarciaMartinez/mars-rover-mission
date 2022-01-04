@@ -1,15 +1,13 @@
 <template>
   <div class="alert-container">
-    <p class="alert-message">
-      <span>Rover:</span>
-    </p>
+    <div class="alert-message">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
 <script>
-export default {
-
-}
+export default {}
 </script>
 
 <style>
@@ -21,7 +19,7 @@ export default {
 .alert-message {
   color: white;
   background-color: #2c3e50;
-  padding: 0.6rem 2rem;
+  padding: 0rem 2rem;
   border-radius: 0.2rem;
 }
 .alert-message span {

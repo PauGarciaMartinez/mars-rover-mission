@@ -17,7 +17,6 @@ const checkObstacles = (position, obstacles, command) => {
   if (canCheck) {
     if (obstacles[position.x][position.y] === 2) {
       isClear = false;
-      alert("Alert: obstacle found");
     }
   }
 
