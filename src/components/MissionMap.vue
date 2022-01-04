@@ -25,33 +25,33 @@ export default {
     const map = ref(null)
 
     const drawMap = () => {
-      const boardSide = window.innerHeight * 0.55;
-      const squareSide = boardSide / 20;
+      const boardSide = window.innerHeight * 0.55
+      const squareSide = boardSide / 20
   
-      map.value.width = boardSide;
-      map.value.height = boardSide;
+      map.value.width = boardSide
+      map.value.height = boardSide
 
       const ctx = map.value.getContext('2d')
 
-      const cols = 20;
-      const rows = 20;
+      const cols = 20
+      const rows = 20
 
       for (let i = 0; i < cols; i++) {
         for (let j = 0; j < rows; j++) {
-          let x = i * squareSide;
-          let y = j * squareSide;
-          const cellColor = 'rgb(226, 140, 90)';
+          let x = i * squareSide
+          let y = j * squareSide
+          const cellColor = 'rgb(226, 140, 90)'
 
           if (matrix[i][j] === 1) cellColor = 'rgb(128, 51, 16)'
           if (matrix[i][j] === 2) cellColor = 'rgb(230, 210, 165)'
           
-          ctx.beginPath();
-          ctx.lineWidth = "1";
-          ctx.strokeStyle = "white";
-          ctx.fillStyle = cellColor;
-          ctx.fillRect(x, y, squareSide, squareSide);
-          ctx.rect(x, y, squareSide, squareSide);
-          ctx.stroke();
+          ctx.beginPath()
+          ctx.lineWidth = "1"
+          ctx.strokeStyle = "white"
+          ctx.fillStyle = cellColor
+          ctx.fillRect(x, y, squareSide, squareSide)
+          ctx.rect(x, y, squareSide, squareSide)
+          ctx.stroke()
         }
       }
     }
