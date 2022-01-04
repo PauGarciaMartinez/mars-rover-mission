@@ -14,7 +14,7 @@
             max="19"
             id="x-axis" 
             name="x-axis" 
-            placeholder="0"
+            placeholder="0-19"
             required>
         </div>
         <div>
@@ -26,7 +26,7 @@
             max="19"
             id="y-axis" 
             name="y-axis" 
-            placeholder="0"
+            placeholder="0-19"
             required>
         </div>
       </div>
@@ -168,6 +168,8 @@ export default {
 .start-btn,
 .instruction-btn {
   font-size: 1rem;
+  color: #151e27;
+  font-weight: 500;
   width: 10rem;
   height: 2.5rem;
   margin: 1rem 0;
@@ -187,6 +189,8 @@ export default {
 .instruction-btn:hover {
   font-weight: 600;
   color: white;
+  background-color: #2c3e50;
+  box-shadow: 0.1rem 0.1rem 0.1rem #97a6b4;
   cursor: pointer;
   transform: translateY(-0.2rem);
   transition: 0.25s;

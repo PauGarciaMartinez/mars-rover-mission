@@ -1,9 +1,12 @@
 <template>
-
+  <div v-show="showAlert">
+    <AlertMessage />
+  </div>
 </template>
 
 <script>
-import { watch } from '@vue/runtime-core'
+import { computed, watch } from '@vue/runtime-core'
+import AlertMessage from '@/components/AlertMessage.vue'
 import executeCommand from '@/composables/executeCommand.js'
 import validateCommand from '@/composables/validateCommand.js'
 import rectifyCommand from '@/composables/rectifyCommand.js'
@@ -17,7 +20,9 @@ export default {
     obstacles: Array
   },
   emits: [ 'update:position' ],
+  components: { AlertMessage },
   setup(props, { emit }) {
+    const showAlert = computed(() => true)
 
     watch(() => props.instructionsCount, () => {
       const { lastCommand } = executeCommand(props.position, props.instruction)
@@ -28,7 +33,7 @@ export default {
       if (isValid) emit('update:position', props.position)
     })
 
-    return {}
+    return { showAlert }
   }
 }
 </script>

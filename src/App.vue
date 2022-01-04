@@ -12,7 +12,6 @@
       v-model:instructions-count="instructionsCount"
       v-model:mission-started="missionStarted" />
   </section>
-  <div>{{ position }} - {{ instruction }} - {{ instructionsCount }}</div>
   <section id="mars-rover">
     <MarsRover 
       v-model:position="position" 

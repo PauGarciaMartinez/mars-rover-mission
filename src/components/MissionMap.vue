@@ -10,6 +10,7 @@
 
 <script>
 import { onBeforeMount, onMounted, watch, ref } from '@vue/runtime-core';
+import _ from 'lodash'
 import createMatrix from '@/composables/createMatrix.js'
 
 export default {
@@ -75,11 +76,13 @@ export default {
     })
 
     // Trigger when Rover position changes
-    watch(() => props.position, (curr, prev) => {
+    watch(() => _.cloneDeep(props.position), (curr, prev) => {
       matrix[prev.x][prev.y] = 0
       matrix[curr.x][curr.y] = 1
       drawMap()
-    })
+    },
+    { deep: true }
+    )
 
     return { matrix, map }
   }
