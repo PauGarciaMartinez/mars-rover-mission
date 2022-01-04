@@ -10,8 +10,8 @@
           <input 
             v-model="position.x"
             type="number"
-            min="1" 
-            max="20"
+            min="0" 
+            max="19"
             id="x-axis" 
             name="x-axis" 
             placeholder="0"
@@ -22,8 +22,8 @@
           <input
             v-model="position.y" 
             type="number" 
-            min="1" 
-            max="20"
+            min="0" 
+            max="19"
             id="y-axis" 
             name="y-axis" 
             placeholder="0"
@@ -46,7 +46,7 @@
       </div>
 
       <button class="start-btn">Start mission</button>
-      
+
     </form>
   </div>
 
@@ -160,6 +160,10 @@ export default {
   width: 3rem;
   border: 0.1rem solid rgb(226, 140, 90);
   border-radius: 0.2rem;
+}
+.coordinates-container label,
+.directions-container label {
+  font-size: 0.9rem;
 }
 .start-btn,
 .instruction-btn {
