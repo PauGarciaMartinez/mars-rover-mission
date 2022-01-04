@@ -7,6 +7,7 @@ import { watch } from '@vue/runtime-core'
 import executeCommand from '@/composables/executeCommand.js'
 import validateCommand from '@/composables/validateCommand.js'
 import rectifyCommand from '@/composables/rectifyCommand.js'
+import checkObstacles from '@/composables/checkObstacles.js'
 
 export default {
   props: {
@@ -20,10 +21,10 @@ export default {
 
     watch(() => props.instructionsCount, () => {
       const { lastCommand } = executeCommand(props.position, props.instruction)
+      const { isValid } = validateCommand(props.position)
+      const { isClear } = checkObstacles(props.position, props.obstacles, props.instruction)
 
-      const { isValid } = validateCommand(props.position, props.obstacles)
-
-      if (!isValid) rectifyCommand(props.position, lastCommand)
+      if (!isValid || !isClear) rectifyCommand(props.position, lastCommand)
       if (isValid) emit('update:position', props.position)
     })
 
