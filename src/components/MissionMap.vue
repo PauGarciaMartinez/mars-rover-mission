@@ -9,17 +9,18 @@
 </template>
 
 <script>
-import { onBeforeMount, onMounted, watch, ref, reactive } from '@vue/runtime-core';
+import { onBeforeMount, onMounted, watch, ref } from '@vue/runtime-core';
 import createMatrix from '@/composables/createMatrix.js'
 
 export default {
   props: {
     position: Object,
-    orientation: String
+    orientation: String,
+    obstacles: Array
   },
-  setup(props) {
+  emits: [ 'update:obstacles' ],
+  setup(props, { emit }) {
     const { matrix } = createMatrix(20, 20)
-    const obstacles = reactive([])
 
     const map = ref(null)
 
@@ -67,6 +68,7 @@ export default {
     onBeforeMount(() => {
       matrix[props.position.x][props.position.y] = 1
       createObstacles(1, 19)
+      emit('update:obstacles', matrix)
     })
     onMounted(() => {
       drawMap()

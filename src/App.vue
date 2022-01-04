@@ -16,20 +16,22 @@
     <MarsRover 
       v-model:position="position" 
       :instruction="instruction"
-      :instructions-count="instructionsCount"/>
+      :instructions-count="instructionsCount"
+      :obstacles="obstacles" />
   </section>
   <section id="mission-map" v-if="missionStarted">
     <MissionMap 
+      v-model:obstacles="obstacles" 
       :position="position" 
       :orientation="orientation" />
   </section>
 </template>
 
 <script>
-import { ref, reactive } from 'vue';
-import CommandCenter from '@/components/CommandCenter';
-import MarsRover from '@/components/MarsRover';
-import MissionMap from '@/components/MissionMap';
+import { ref, reactive } from 'vue'
+import CommandCenter from '@/components/CommandCenter'
+import MarsRover from '@/components/MarsRover'
+import MissionMap from '@/components/MissionMap'
 
 export default {
   name: 'App',
@@ -43,6 +45,7 @@ export default {
     const orientation = ref('')
     const instruction = ref('')
     const instructionsCount = ref(0)
+    const obstacles = reactive([])
 
     const missionStarted = false
 
@@ -51,6 +54,7 @@ export default {
       orientation,
       instruction,
       instructionsCount,
+      obstacles,
       missionStarted
     }
   }

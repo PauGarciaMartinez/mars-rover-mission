@@ -12,14 +12,15 @@ export default {
   props: {
     position: Object,
     instruction: String,
-    instructionsCount: Number
+    instructionsCount: Number,
+    obstacles: Array
   },
   emits: [ 'update:position' ],
   setup(props, { emit }) {
 
     watch(() => props.instructionsCount, () => {
       const { newPosition } = executeCommand(props.position, props.instruction)
-      const { isValid } = validateCommand(newPosition)
+      const { isValid } = validateCommand(newPosition, props.obstacles)
       if (isValid) emit('update:position', newPosition)
     })
 

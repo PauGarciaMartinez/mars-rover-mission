@@ -1,4 +1,5 @@
 <template>
+
   <div class="step-one-wrapper" v-if="isStep1">
     <form class="form-container" @submit.prevent="startMission(), updateStep()">
       
@@ -45,6 +46,7 @@
       </div>
 
       <button class="start-btn">Start mission</button>
+      
     </form>
   </div>
 
