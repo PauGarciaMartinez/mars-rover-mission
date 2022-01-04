@@ -1,18 +1,22 @@
 const executeCommand = (position, command) => {
-  const newPosition = { x: position.x, y: position.y };
-  
+  let lastCommand;
+
   switch(command) {
     case 'F':
-      newPosition.y--;
+      position.y--;
+      lastCommand = 'y--';
       break;
     case 'R':
-      newPosition.x++;
+      position.x++;
+      lastCommand = 'x++';
       break;
     case 'L':
-      newPosition.x--;
+      position.x--;
+      lastCommand = 'x--';
       break;
   }
-  return { newPosition };
+
+  return { lastCommand }
 }
 
 export default executeCommand;

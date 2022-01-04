@@ -6,10 +6,10 @@ const validateCommand = (position, obstacles) => {
     alert("Alert: well, it seems Mars is flat after all...");
   }
 
-  if (obstacles[position.x][position.y] === 2) {
+  /* if (obstacles[position.x][position.y] === 2) {
     isValid = false;
     alert("Alert: obstacle found")
-  }
+  } */
 
   return { isValid };
 }
