@@ -6,6 +6,10 @@ const executeCommand = (position, command) => {
       position.y--;
       lastCommand = 'y--';
       break;
+    case 'B':
+      position.y++;
+      lastCommand = 'y++';
+      break;
     case 'R':
       position.x++;
       lastCommand = 'x++';

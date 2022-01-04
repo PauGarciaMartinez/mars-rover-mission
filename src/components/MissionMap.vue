@@ -65,17 +65,16 @@ export default {
       }
     }
 
-    // Lifecycle hooks
     onBeforeMount(() => {
       matrix[props.position.x][props.position.y] = 1
       createObstacles(1, 19)
       emit('update:obstacles', matrix)
     })
+    
     onMounted(() => {
       drawMap()
     })
 
-    // Trigger when Rover position changes
     watch(() => _.cloneDeep(props.position), (curr, prev) => {
       matrix[prev.x][prev.y] = 0
       matrix[curr.x][curr.y] = 1

@@ -96,7 +96,8 @@ export default {
     ]
     const instructions = [
       { move: 'Left', command: "L" },
-      { move: 'Forward', command: "F" },
+      { move: 'Front', command: "F" },
+      { move: 'Back', command: "B" },
       { move: 'Right', command: "R" }
     ]
 

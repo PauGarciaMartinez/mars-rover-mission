@@ -3,6 +3,9 @@ const rectifyCommand = (position, lastCommand) => {
     case 'y--':
       position.y++;
       break;
+    case 'y++':
+      position.y--;
+      break;
     case 'x++':
       position.x--;
       break;
