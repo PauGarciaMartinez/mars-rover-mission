@@ -63,7 +63,7 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -78,9 +78,16 @@ header {
   width: 100%;
   margin-bottom: 4rem;
 }
+.title {
+  font-size: 2rem;
+}
+.subtitle {
+  font-size: 1rem;
+  margin-top: -0.3rem;
+}
 .planet {
   position: absolute;
-  transform: translate(-9.5rem, -1.4rem);
+  transform: translate(-10.2rem, -1rem);
   width: 10rem;
   height: 10rem;
   border: none;
